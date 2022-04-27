@@ -1,0 +1,199 @@
+.sidebar li .submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: var(--bs-dark);
+}
+
+.sidebar .nav-link:hover {
+  color: var(--bs-primary);
+}
+nav.sidebar.card {
+height: 500px;
+max-height: 100%;
+}
+nav.navbar.bg-blue {
+  background: #32a2cd;
+}
+.cm-toggle {
+	-webkit-appearance: none;
+	-webkit-tap-highlight-color: transparent;
+	position: relative;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+	margin: 0px 10px;
+}
+
+
+/* To create surface of toggle button */
+.cm-toggle:after {
+    content: '';
+    width: 40px;
+    height: 20px;
+    display: inline-block;
+    background: rgb(226 9 9 / 55%);
+    border-radius: 18px;
+    clear: both;
+}
+
+
+/* Contents before checkbox to create toggle handle */
+.cm-toggle:before {
+	content: '';
+	width: 16px;
+    height: 16px;
+	display: block;
+	position: absolute;
+	left: 3px;
+	top: 2px;
+	border-radius: 50%;
+	background: rgb(236 235 235);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Shift the handle to left on check event */
+.cm-toggle:checked:before {
+	left: 21px;
+	box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+/* Background color when toggle button will be active */
+.cm-toggle:checked:after {
+	background: #0da952;
+}
+/* Transition for smoothness */
+.cm-toggle,
+.cm-toggle:before,
+.cm-toggle:after,
+.cm-toggle:checked:before,
+.cm-toggle:checked:after {
+	transition: ease .3s;
+	-webkit-transition: ease .3s;
+	-moz-transition: ease .3s;
+	-o-transition: ease .3s;
+}
+
+
+/* Slide Toggle Button */
+.slideToggleOuter {
+    position: relative;
+    width: 190px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideToggleOuter input.cm-toggle + .text {
+	order: -1;
+}
+
+.slideToggleOuter span.text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+}
+
+.slideToggleOuter input.cm-toggle {
+    margin: 5px 5px 0;
+    height: auto;
+    min-width: auto;
+}
+
+.slideToggleOuter input.cm-toggle:checked + .text {
+	opacity: .6;
+}
+
+.slideToggleOuter input.cm-toggle + .text + .text {
+	opacity: .6;
+}
+.slideToggleOuter input.cm-toggle:checked + .text + .text {
+	opacity: 1;
+}
+
+table.dataTable {
+	table-layout: unset;
+}
+
+table.dataTable thead .slideBtnOuter, 
+table.dataTable tbody .slideBtnOuter {
+    width: 100px !important;
+	max-width: 200px;
+	min-width: unset;
+}
+
+.alert-success-popup {
+    position: fixed;
+    top: 10px;
+    z-index: 99999;
+    right: 10px;
+    background: #1ac987 !important;
+    border-color: #1ac987;
+}
+
+.card-body{
+	overflow: auto;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead th{
+	white-space: nowrap;
+}
+
+table.dataTable.display tbody td{
+	word-break: break-word;
+}
+
+.white-space-nowrap{
+	white-space: nowrap;
+}
+
+.customerInfoList {
+    padding: 0 12px;
+    list-style: none;
+    width: 100%;
+}
+
+.customerInfoList li {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.customerInfoList li label {
+    width: 110px;
+}
+
+.customerInfoList li span {
+    width: calc(100% - 110px);
+    word-break: break-word;
+}
+
+.actionControl {
+    white-space: nowrap;
+}
+
+.modal-content .overlay .fa-spinner.fa-spin { font-size: 40px;}
+.modal-content .overlay { background-color: rgb(0 0 0 / 18%);  pointer-events:none;}
+.modal-content .overlay.hidden{ display:none;}
+
+@media (min-width:768px) and (max-width:991px){
+	.customerInfoList li{
+		margin-bottom: 10px;
+	}
+	.customerInfoList li label,
+	.customerInfoList li span {
+		width: 100%;
+		margin-bottom: 0;
+	}
+}
+.bg-green {
+  color: white;
+  background: #32a2cd;
+}
