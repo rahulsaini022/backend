@@ -77,7 +77,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($rol,$id)
     {
         $role = Role::find($id);
         $rolePermissions = Permission::join("role_has_permissions", "role_has_permissions.permission_id", "=", "permissions.id")
@@ -93,7 +93,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user_role,$id)
     {
         $role = Role::find($id);
         $permission = Permission::get();
@@ -111,7 +111,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$role, $id)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -136,7 +136,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($role,$id)
     {
         DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('roles.index')

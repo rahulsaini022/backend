@@ -82,7 +82,7 @@ else{
     	var total='all';
         var token= $('input[name=_token]').val();
         $.ajax({
-            url:"{{route('get.stats')}}",
+            url:"{{route('get.stats',Auth::user()->roles[0]->name)}}",
             method:"POST",
             dataType: 'json',
             data:{

@@ -11,7 +11,8 @@
 
 
 
-{!! Form::open(array('route' => 'users.store','method'=>'POST','id'=>'AddUserForm')) !!}
+{{-- {!! Form::open(array('method'=>'POST','id'=>'AddUserForm')) !!} --}}
+<form action="{{url(Auth::user()->roles[0]->name.'/users/create')}} " method='POST' id='AddUserForm'> 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -71,7 +72,8 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ route('users.store') }}",
+            url: "{{ route('users.store',Auth::user()->roles[0]->name)  }}",
+          
             data: formData,
             contentType: false,
             processData: false,

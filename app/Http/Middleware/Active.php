@@ -17,7 +17,7 @@ class Active
     {
         if( auth()->user()->status == 0)
        {
-         return redirect('/')->with('error','Account Blocked');
+         return redirect('/login')->with('error','Account Blocked');
        }
            
         return $next($request);

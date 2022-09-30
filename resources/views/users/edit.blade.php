@@ -11,7 +11,7 @@
 
 
 
-{!! Form::model($user, ['method' => 'PATCH','id'=>'editUserForm','route' => ['users.update', $user->id]]) !!}
+{!! Form::model($user, ['method' => 'PATCH','id'=>'editUserForm','url' => [Auth::user()->roles[0]->name.'/users/'. $user->id]]) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -70,7 +70,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ route('users.update', $user->id) }}",
+            url: "{{url(Auth::user()->roles[0]->name.'/users/'. $user->id) }}",
             data: formData,
             contentType: false,
             processData: false,

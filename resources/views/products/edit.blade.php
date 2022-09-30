@@ -8,7 +8,7 @@
                 <h2>Edit Product</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('products.index',Auth::user()->roles[0]->name) }}"> Back</a>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     @endif
 
 
-    <form action="{{ route('products.update',$product->id) }}" method="POST">
+    <form action="{{ url(Auth::user()->roles[0]->name.'/products/'.$product->id)  }}" method="POST">
     	@csrf
         @method('PUT')
 

@@ -60,4 +60,9 @@ public function resetTwoFactorCode()
     $this->two_factor_expires_at = null;
     $this->save();
 }
+
+public function roleName()
+{
+    return $this->getRoleNames();
+}
 }

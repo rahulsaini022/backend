@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /** 
      * Create a new controller instance.
@@ -62,8 +62,14 @@ class LoginController extends Controller
      * @return mixed
      */
     protected function authenticated(Request $request, $user)
-    {  
-        $user->generateTwoFactorCode();
-        $user->notify(new TwoFactorCode());
+    {
+        if ($user->hasRole('Admin')) {
+            // return redirect('/admin');
+            return redirect()->route('home', $user->getRoleNames()[0]);
+        } else {
+            // return redirect('/');
+            return redirect()->intended('/');
+        }
+       
     }
 }

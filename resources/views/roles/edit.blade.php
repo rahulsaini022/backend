@@ -1,12 +1,15 @@
 
 
 
-{!! Form::model($role, ['method' => 'PATCH','id'=>'editRole','route' => ['roles.update', $role->id]]) !!}
+{!! Form::model($role, ['method' => 'PATCH','id'=>'editRole','url' => [Auth::user()->roles[0]->name.'/roles/'. $role->id]]) !!}
+{{-- <form action="" method='POST' id='editRole'>  --}}
+@csrf
+@method('PATCH')
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            {!! Form::text('name',$role->name, array('placeholder' => 'Name','class' => 'form-control')) !!}
             <span class="text-danger error error_name"></span>
         </div>
     </div>
@@ -44,7 +47,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ route('roles.update', $role->id) }}",
+            url: "{{url(Auth::user()->roles[0]->name.'/roles/'. $role->id)}}",
             data: formData,
             contentType: false,
             processData: false,

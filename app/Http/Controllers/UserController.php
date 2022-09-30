@@ -8,6 +8,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB ;
 
 class UserController extends Controller
@@ -78,11 +79,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($role,$id)
     {
         $user = User::find($id);
         $html=  view('users.show',compact('user'));
-        return $html;
+        echo $html;
     }
     
     /**
@@ -91,14 +92,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($role,$id)
     {
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
     
-        $html = view('users.edit',compact('user','roles','userRole'));
-        return $html;
+     
+        return  view('users.edit',compact('user','roles','userRole'));
     }
     
     /**
@@ -108,7 +109,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$role, $id)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -160,10 +161,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($role,$id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')
+        return redirect()->route('users.index', Auth::user()->roles[0]->name)
                         ->with('success','User deleted successfully');
     }
 }

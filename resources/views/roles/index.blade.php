@@ -36,11 +36,11 @@
             @can('role-edit')
                 <a class="btn btn-primary edit-role" data-id="{{$role->id}}" >Edit</a>
             @endcan
-            @can('role-delete')
+            {{-- @can('role-delete')
                 {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}
-            @endcan
+            @endcan --}}
         </td>
     </tr>
     @endforeach
@@ -100,25 +100,25 @@
 
   <script>
    
-
-    
+  var url= "{{ url('/').'/'.auth()->user()->roles[0]->name.'/roles'}}";
+    console.log(url);
       $(document).on('click', '.add-new-role', function(){
-          target = '{{ url("/roles/create") }}';
-         
+          target = url+'/create';
+         console.log(target);
             $("#addRoleModal .modal-body").load(target, function() {$("#addRoleModal").modal("show"); });
       });
      
           $(document).on('click', '.edit-role', function(){
               role_id = $(this).data('id');
              
-              target = '{{ url("/roles") }}/'+role_id+'/edit';
+              target = url+'/'+role_id+'/edit';
            
               $("#editRoleModal .modal-body").load(target, function() {$("#editRoleModal").modal("show"); });
           });
           $(document).on('click', '.show-role', function(){
               role_id = $(this).data('id');
              
-              target = '{{ url("/roles") }}/'+role_id;
+              target = url+'/'+role_id;
            
               $("#showRoleModal .modal-body").load(target, function() {$("#showRoleModal").modal("show"); });
           });

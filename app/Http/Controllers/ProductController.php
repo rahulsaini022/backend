@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
     
 use App\Models\Product;
 use Illuminate\Http\Request;
-    
+use Illuminate\Support\Facades\Auth;
+
 class ProductController extends Controller
 { 
     /**
@@ -56,7 +57,7 @@ class ProductController extends Controller
     
         Product::create($request->all());
     
-        return redirect()->route('products.index')
+        return redirect()->route('products.index', Auth::user()->roles[0]->name)
                         ->with('success','Product created successfully.');
     }
     
@@ -66,7 +67,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($user_role,Product $product)
     {
         return view('products.show',compact('product'));
     }
@@ -77,8 +78,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($role,$id)
     {
+     $product=Product::find($id);
         return view('products.edit',compact('product'));
     }
     
@@ -89,7 +91,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request,$role, Product $product)
     {
          request()->validate([
             'name' => 'required',
@@ -98,7 +100,7 @@ class ProductController extends Controller
     
         $product->update($request->all());
     
-        return redirect()->route('products.index')
+        return redirect()->route('products.index', \Auth::user()->roles[0]->name)
                         ->with('success','Product updated successfully');
     }
     
@@ -108,11 +110,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($role,Product $product)
     {
         $product->delete();
     
-        return redirect()->route('products.index')
+        return redirect()->route('products.index', Auth::user()->roles[0]->name)
                         ->with('success','Product deleted successfully');
     }
 }

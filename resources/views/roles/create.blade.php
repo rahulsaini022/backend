@@ -1,7 +1,8 @@
 <div class="conatiner">
 
 
-{!! Form::open(array('route' => 'roles.store','id'=>'addnewRole','method'=>'POST')) !!}
+{{-- {!! Form::open(array('url' => 'roles/store','id'=>'addnewRole','method'=>'POST')) !!} --}}
+<form action="{{url(Auth::user()->roles[0]->name.'/roles/create')}} " method='POST' id='addnewRole'> 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -53,7 +54,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ route('roles.store') }}",
+            url: "{{ route('roles.store',Auth::user()->roles[0]->name) }}",
             data: formData,
             contentType: false,
             processData: false,
